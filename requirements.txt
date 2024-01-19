@@ -1,5 +1,9 @@
+alembic
 boto3
 torch
 fastapi
 uvicorn
 python-multipart
+SQLAlchemy
+PyMySQL
+mysql-connector-python

@@ -1,6 +1,5 @@
 from fastapi import UploadFile
 import os
-import shutil
 
 from lib.aws import upload_to_s3
 from lib.file_helpers import store_file_locally
