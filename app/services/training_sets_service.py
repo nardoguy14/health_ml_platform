@@ -1,8 +1,8 @@
 from fastapi import UploadFile
 import os
 
-from lib.aws import upload_to_s3
-from lib.file_helpers import store_file_locally
+from app.lib.aws import upload_to_s3
+from app.lib.file_helpers import store_file_locally
 
 
 class TrainingSetsService():

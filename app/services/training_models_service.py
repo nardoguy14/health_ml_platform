@@ -1,8 +1,8 @@
 
-from domain.models import TrainingModel
+from app.domain.models import TrainingModel
 from torch.nn import Sequential
 
-from repositories.training_models_repository import TrainingModelsRepository
+from app.repositories.training_models_repository import TrainingModelsRepository
 
 training_models_repository = TrainingModelsRepository()
 

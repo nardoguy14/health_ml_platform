@@ -1,6 +1,6 @@
-from domain.db_models.models import TrainingModelDB
-from domain.models import TrainingModel
-from repositories.base_repository import create_db_session
+from app.domain.db_models.models import TrainingModelDB
+from app.domain.models import TrainingModel
+from app.repositories.base_repository import create_db_session
 
 
 class TrainingModelsRepository():

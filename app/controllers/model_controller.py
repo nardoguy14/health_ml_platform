@@ -1,7 +1,7 @@
 from fastapi import UploadFile, APIRouter
 
-from domain.models import TrainingModel
-from services.training_models_service import TrainingModelsService
+from app.domain.models import TrainingModel
+from app.services.training_models_service import TrainingModelsService
 
 model_router = APIRouter()
 

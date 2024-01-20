@@ -1,5 +1,5 @@
 from fastapi import UploadFile, APIRouter
-from services.training_sets_service import TrainingSetsService
+from app.services.training_sets_service import TrainingSetsService
 
 router = APIRouter()
 training_sets_service = TrainingSetsService()

@@ -4,6 +4,7 @@ torch
 fastapi
 uvicorn
 python-multipart
+numpy
 SQLAlchemy
 PyMySQL
 mysql-connector-python
