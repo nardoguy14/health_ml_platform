@@ -13,4 +13,8 @@ class TrainingModelsRepository():
             session.add(training_model_db)
             session.commit()
 
+    async def get_training_model(self, name: str):
+        with create_db_session() as session:
+            return session.query(TrainingModelDB).filter(TrainingModelDB.name == name).all()
+
 

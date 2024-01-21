@@ -13,3 +13,7 @@ class TrainingModelsService():
         await training_models_repository.create_training_model(training_model)
 
         return training_model.training_model_to_torch_sequential()
+
+    async def get_training_model(self, name: str) -> TrainingModel:
+        instances = await training_models_repository.get_training_model(name)
+        return instances[0]
