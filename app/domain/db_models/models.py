@@ -12,4 +12,5 @@ class TrainingModelDB(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
     training_data_location: Mapped[str] = mapped_column(String(30))
+    t_dep_column: Mapped[str] = mapped_column(String(50))
     layers: Mapped[dict] = mapped_column(JSON)

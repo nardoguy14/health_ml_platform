@@ -1,7 +1,8 @@
-from fastapi import FastAPI
 import uvicorn
-from controllers.training_controller import router
+from fastapi import FastAPI
+
 from controllers.model_controller import model_router
+from controllers.training_controller import router
 
 app = FastAPI()
 

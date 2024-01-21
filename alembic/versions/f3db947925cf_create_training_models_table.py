@@ -24,6 +24,7 @@ def upgrade() -> None:
         sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('name', sa.String(length=40), nullable=False),
         sa.Column('training_data_location', sa.String(length=255), nullable=False),
+        sa.Column('t_dep_column', sa.String(length=50), nullable=False),
         sa.Column('layers', sa.JSON, nullable=False),
         sa.Column('created_at', sa.DATETIME, nullable=False, server_default=func.now()),
         sa.Column('modified_at', sa.DATETIME, nullable=False, server_default=func.now())

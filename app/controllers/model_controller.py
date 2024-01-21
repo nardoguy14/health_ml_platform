@@ -1,4 +1,4 @@
-from fastapi import UploadFile, APIRouter
+from fastapi import APIRouter
 
 from app.domain.models import TrainingModel
 from app.services.training_models_service import TrainingModelsService

@@ -13,6 +13,7 @@ class TrainingLayer(BaseModel):
 class TrainingModel(BaseModel):
     name: str
     training_data_location: str
+    t_dep_column: str
     layers: list[TrainingLayer]
 
     def training_model_to_torch_sequential(self) -> Sequential:
