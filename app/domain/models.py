@@ -11,6 +11,7 @@ class TrainingLayer(BaseModel):
 
 
 class TrainingModel(BaseModel):
+    id: Optional[int] = None
     name: str
     training_data_location: str
     t_dep_column: str

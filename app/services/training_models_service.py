@@ -16,9 +16,9 @@ training_sets_service = TrainingSetsService()
 class TrainingModelsService():
 
     async def create_training_model(self, training_model: TrainingModel) -> Sequential:
-        await training_models_repository.create_training_model(training_model)
+        result = await training_models_repository.create_training_model(training_model)
 
-        return training_model.training_model_to_torch_sequential()
+        return result
 
     async def get_training_model(self, name: str) -> TrainingModel:
         instance = (await training_models_repository.get_training_model(name))[0]

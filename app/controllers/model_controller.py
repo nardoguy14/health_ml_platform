@@ -10,8 +10,8 @@ training_model_service = TrainingModelsService()
 
 @model_router.post("/training-models/")
 async def create_model(training_model: TrainingModel):
-    await training_model_service.create_training_model(training_model)
-    return 1
+    result = await training_model_service.create_training_model(training_model)
+    return result
 
 
 @model_router.get("/training-models/{name}")

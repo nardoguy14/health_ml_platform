@@ -5,7 +5,7 @@ from app.repositories.base_repository import create_db_session
 
 class TrainingModelsRepository():
 
-    async def create_training_model(self, training_model: TrainingModel):
+    async def create_training_model(self, training_model: TrainingModel) -> TrainingModel:
         with create_db_session() as session:
             training_model_db = TrainingModelDB(name=training_model.name,
                             training_data_location=training_model.training_data_location,
@@ -13,6 +13,8 @@ class TrainingModelsRepository():
                             layers=training_model.layers_to_dict())
             session.add(training_model_db)
             session.commit()
+            training_model.id = training_model_db.id
+            return training_model
 
     async def get_training_model(self, name: str):
         with create_db_session() as session:
