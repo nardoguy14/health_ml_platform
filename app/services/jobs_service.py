@@ -1,3 +1,5 @@
+from tempfile import NamedTemporaryFile
+
 import pandas
 import torch
 from sklearn.model_selection import train_test_split
@@ -20,15 +22,14 @@ class JobsService():
 
     async def create_job(self, training_job: TrainingJob):
         training_model: TrainingModel = await training_models_service.get_training_model(training_job.model_name)
-        data_set: TrainingJobsDB = await training_sets_service.get_training_set_meta(training_job.data_set_name)
-        job = await jobs_repository.create_job(training_model.id, data_set.id)
-        trained_model = await self.run_training_job(training_job.model_name, training_job.data_set_name)
+        data_set_meta: TrainingJobsDB = await training_sets_service.get_training_set_meta(training_job.data_set_name)
+        job = await jobs_repository.create_job(training_model.id, data_set_meta.id)
+        data_set_file = await training_sets_service.get_training_set(training_job.data_set_name)
+        trained_model = await self.run_training_job(training_model, data_set_file)
         print("YAY!")
         return job
 
-    async def run_training_job(self, model_name: str, data_set_name: str):
-        training_model = await training_models_service.get_training_model(model_name)
-        data_set_file = await training_sets_service.get_training_set(data_set_name)
+    async def run_training_job(self, training_model: TrainingModel, data_set_file: NamedTemporaryFile):
         t_dep, t_indep = await self.create_tensors(training_model.t_dep_column, data_set_file.name)
         data_set, data_loader = await self.create_data_set_and_data_loaders(t_dep, t_indep)
         trained_model = await self.run_training_model(data_loader, data_set, training_model)

@@ -22,7 +22,7 @@ def upload_to_s3(upload_file: UploadFile) -> str:
             print(e)
 
 
-def download_from_s3(filename: str):
+def download_from_s3(filename: str) -> NamedTemporaryFile:
     s3_client = boto3.client('s3')
     temp_file = NamedTemporaryFile(delete=False)
     result = s3_client.download_fileobj(S3_BUCKET_TRAINING_SETS, filename, temp_file)
