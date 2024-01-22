@@ -8,7 +8,7 @@ import os
 S3_BUCKET_TRAINING_SETS = os.environ.get("S3_BUCKET_TRAINING_SETS")
 
 
-def upload_to_s3(upload_file: UploadFile):
+def upload_to_s3(upload_file: UploadFile) -> str:
     s3_client = boto3.client('s3')
     with NamedTemporaryFile(mode='w+', delete=False) as temp:
         try:
@@ -17,6 +17,7 @@ def upload_to_s3(upload_file: UploadFile):
             temp.seek(0)
             result = s3_client.upload_file(temp.name, S3_BUCKET_TRAINING_SETS, upload_file.filename)
             print(result)
+            return f"s3://{S3_BUCKET_TRAINING_SETS}/{temp.name}"
         except Exception as e:
             print(e)
 
