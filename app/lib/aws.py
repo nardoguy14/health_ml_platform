@@ -17,7 +17,7 @@ def upload_to_s3(upload_file: UploadFile) -> str:
             temp.seek(0)
             result = s3_client.upload_file(temp.name, S3_BUCKET_TRAINING_SETS, upload_file.filename)
             print(result)
-            return f"s3://{S3_BUCKET_TRAINING_SETS}/{temp.name}"
+            return f"s3://{S3_BUCKET_TRAINING_SETS}/{upload_file.filename}"
         except Exception as e:
             print(e)
 
@@ -26,5 +26,6 @@ def download_from_s3(filename: str) -> NamedTemporaryFile:
     s3_client = boto3.client('s3')
     temp_file = NamedTemporaryFile(delete=False)
     result = s3_client.download_fileobj(S3_BUCKET_TRAINING_SETS, filename, temp_file)
+    temp_file.seek(0)
     return temp_file
 

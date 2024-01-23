@@ -25,5 +25,6 @@ class TrainingSetsService():
             return get_file_locally(file_name)
 
     async def get_training_set_meta(self, file_name: str):
-        await training_set_repository.get_training_set(file_name)
+        meta = await training_set_repository.get_training_set(file_name)
+        return meta[0]
 

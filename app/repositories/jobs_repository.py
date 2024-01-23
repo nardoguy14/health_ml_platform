@@ -7,7 +7,7 @@ class JobsRepository():
 
     async def create_job(self, model_id: int, data_set_id: int) -> TrainingJobsDB:
         with create_db_session() as session:
-            training_model_db = TrainingJobsDB(name="",
+            training_model_db = TrainingJobsDB(
                                        data_set_id=model_id,
                                        model_id=data_set_id)
             session.add(training_model_db)

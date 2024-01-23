@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from torch.nn import Sequential
 from torch.utils.data import DataLoader, TensorDataset
 
+from app.domain.db_models.models import TrainingModelDB
 from app.domain.models import TrainingModel, TrainingLayer
 from app.repositories.training_models_repository import TrainingModelsRepository
 from app.services.training_sets_service import TrainingSetsService
@@ -21,11 +22,12 @@ class TrainingModelsService():
         return result
 
     async def get_training_model(self, name: str) -> TrainingModel:
-        instance = (await training_models_repository.get_training_model(name))[0]
+        instance: TrainingModelDB = (await training_models_repository.get_training_model(name))[0]
         layers = []
         for layer in instance.layers:
             layers.append(TrainingLayer(**layer))
         return TrainingModel(id=instance.id,
                              name=instance.name,
+                             t_dep_column=instance.t_dep_column,
                              training_data_location=instance.training_data_location,
                              layers=layers)

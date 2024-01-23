@@ -30,7 +30,7 @@ class JobsService():
         return job
 
     async def run_training_job(self, training_model: TrainingModel, data_set_file: NamedTemporaryFile):
-        t_dep, t_indep = await self.create_tensors(training_model.t_dep_column, data_set_file.name)
+        t_dep, t_indep = await self.create_tensors(training_model.t_dep_column, data_set_file)
         data_set, data_loader = await self.create_data_set_and_data_loaders(t_dep, t_indep)
         trained_model = await self.run_training_model(data_loader, data_set, training_model)
         return trained_model
@@ -48,7 +48,7 @@ class JobsService():
                 loss = loss_func(y_batch_pred, torch.unsqueeze(y_batch, 1))
                 optimizer.zero_grad()
                 loss.backward()
-                optimizer.step()
+                optimizer. step()
 
 
             loss = loss.item()
@@ -57,9 +57,8 @@ class JobsService():
         return torch_sequential_model
 
 
-    async def create_tensors(self, t_dep_col: str, file_name: str):
-        data_set = await training_sets_service.get_training_set(file_name)
-        df = pandas.read_csv(data_set.name)
+    async def create_tensors(self, t_dep_col: str, data_set_file: NamedTemporaryFile):
+        df = pandas.read_csv(data_set_file.name)
         t_dep = torch.tensor(df[t_dep_col])
         t_dep = t_dep.to(torch.float32)
 

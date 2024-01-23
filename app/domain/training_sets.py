@@ -4,6 +4,6 @@ from fastapi import File
 
 
 class TrainingSet(BaseModel):
-    id: Optional[str]
+    id: Optional[str] = None
     file_name: str
     s3_location: str

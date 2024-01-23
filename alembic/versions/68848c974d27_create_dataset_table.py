@@ -23,8 +23,8 @@ def upgrade() -> None:
     op.create_table(
         'data_set',
         sa.Column('id', sa.Integer, primary_key=True),
-        sa.Column('s3_location', sa.String, nullable=False),
-        sa.Column('file_name', sa.String, nullable=False),
+        sa.Column('s3_location', sa.String(length=100), nullable=False),
+        sa.Column('file_name', sa.String(length=100), nullable=False),
         sa.Column('created_at', sa.DATETIME, nullable=False, server_default=func.now()),
         sa.Column('modified_at', sa.DATETIME, nullable=False, server_default=func.now())
     )
