@@ -2,8 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 
 from app.controllers.job_controller import job_router
-from controllers.model_controller import model_router
-from controllers.training_controller import router
+from app.controllers.model_controller import model_router
+from app.controllers.training_controller import router
 
 app = FastAPI()
 
