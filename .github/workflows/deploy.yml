@@ -32,6 +32,7 @@ jobs:
       - name: Upload Artifact to s3
         run: |
           ls
+          zip -r app-${GITHUB_SHA}.zip app
           aws s3 cp app s3://${{ env.S3BUCKET }}/app-${GITHUB_SHA}
         
 #  deploy:
