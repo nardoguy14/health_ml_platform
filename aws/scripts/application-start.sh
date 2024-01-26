@@ -2,4 +2,8 @@
 set -xe
 
 # Start Tomcat, the application server.
-sudo systemctl start ml
+cd /mnt
+
+. .venv/bin/activate
+
+uvicorn app.main:app
