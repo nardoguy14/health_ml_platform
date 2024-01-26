@@ -4,7 +4,7 @@ set -xe
 
 cd /usr/local/app
 
-aws s3 cp s3://nardomlstack-webappdeploymentbucket-00batakrvsbh/app.zip .
+aws s3 cp s3://nardoml3stack-webappdeploymentbucket-9zouy4hd1xrr/app.zip .
 
 unzip app.zip
 
