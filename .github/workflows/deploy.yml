@@ -30,7 +30,6 @@ jobs:
         run: chmod -R +x ./.github
 
       - name: Upload Artifact to s3
-        working-directory: ${{ env.applicationfolder }}
         run: |
           ls
           aws s3 cp app s3://${{ env.S3BUCKET }}/app-${GITHUB_SHA}
