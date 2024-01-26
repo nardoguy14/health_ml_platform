@@ -8,7 +8,5 @@ fi
 
 mkdir -vp /usr/local/app
 
-#aws s3 cp s3://nardomlstack-webappdeploymentbucket-00batakrvsbh/app.zip /usr/local/app
-
 ls
 
