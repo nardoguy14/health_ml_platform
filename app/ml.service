@@ -1,0 +1,11 @@
+[Unit]
+Description=Nardos Ml Platform
+After=network.target
+
+[Service]
+ExecStart=/usr/local/app/.venv/bin/python3 /usr/local/app/main.py
+Restart=always
+User=root
+
+[Install]
+WantedBy=default.target

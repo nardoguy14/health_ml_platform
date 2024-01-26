@@ -35,21 +35,21 @@ jobs:
           zip -r app-${GITHUB_SHA}.zip app
           aws s3 cp app-${GITHUB_SHA}.zip s3://${{ env.S3BUCKET }}/app.zip
         
-#  deploy:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    environment: Dev
-#    permissions:
-#      id-token: write
-#      contents: read
-#    steps:
-#    - uses: actions/checkout@v2
-#    - uses: aws-actions/configure-aws-credentials@v1
-#      with:
-#        role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
-#        role-session-name: GitHub-Action-Role
-#        aws-region: ${{ env.AWS_REGION }}
-#    - run: |
-#        echo "Deploying branch ${{ env.GITHUB_REF }} to ${{ github.event.inputs.environment }}"
-#        commit_hash=`git rev-parse HEAD`
-#        aws deploy create-deployment --application-name CodeDeployAppNameWithASG --deployment-group-name CodeDeployGroupName --github-location repository=$GITHUB_REPOSITORY,commitId=$commit_hash --ignore-application-stop-failures
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: Dev
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - uses: actions/checkout@v2
+    - uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+        role-session-name: GitHub-Action-Role
+        aws-region: ${{ env.AWS_REGION }}
+    - run: |
+        echo "Deploying branch ${{ env.GITHUB_REF }} to ${{ github.event.inputs.environment }}"
+        commit_hash=`git rev-parse HEAD`
+        aws deploy create-deployment --application-name CodeDeployAppNameWithASG --deployment-group-name CodeDeployGroupName --github-location repository=$GITHUB_REPOSITORY,commitId=${GITHUB_SHA} --ignore-application-stop-failures
