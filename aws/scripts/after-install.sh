@@ -8,7 +8,7 @@ aws s3 cp s3://nardomlstack-webappdeploymentbucket-00batakrvsbh/app.zip .
 
 unzip app.zip
 
-mv ml.service /etc/systemd/system/ml.service
+mv app/ml.service /etc/systemd/system/ml.service
 
 sudo systemctl daemon-reload
 
