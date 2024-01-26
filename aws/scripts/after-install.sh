@@ -12,7 +12,7 @@ mv app/ml.service /etc/systemd/system/ml.service
 sudo chmod 777 /etc/systemd/system/ml.service
 
 
-python3 -m venv .venv
+python3.9 -m venv .venv
 . .venv/bin/activate
 
 pip install -r app/requirements.txt
