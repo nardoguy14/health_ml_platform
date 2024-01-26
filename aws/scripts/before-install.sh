@@ -2,7 +2,8 @@
 set -xe
 
 # Delete the old  directory as needed.
-if [ -d /mnt/data/app ]; then
-    rm -rf /mnt/data/app/
+if [ -d /mnt/ ]; then
+    cd /mnt
+    rm -rf *
 fi
 

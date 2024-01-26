@@ -3,7 +3,7 @@ Description=Nardos Ml Platform
 After=network.target
 
 [Service]
-ExecStart=/usr/local/app/.venv/bin/python3 /usr/local/app/main.py
+ExecStart=/mnt/.venv/bin/python3 /mnt/app/main.py
 Restart=always
 User=root
 
