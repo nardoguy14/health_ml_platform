@@ -2,7 +2,7 @@
 set -xe
 
 
-cd /usr/local/app
+cd /mnt/data
 
 aws s3 cp s3://nardosml3stack-webappdeploymentbucket-eskd5jc3wx9k/app.zip .
 

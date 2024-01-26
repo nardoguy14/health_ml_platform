@@ -2,11 +2,7 @@
 set -xe
 
 # Delete the old  directory as needed.
-if [ -d /usr/local/app/ ]; then
-    rm -rf /usr/local/app/
+if [ -d /mnt/data/ ]; then
+    rm -rf /mnt/data/app/
 fi
-
-mkdir -vp /usr/local/app
-
-ls
 
