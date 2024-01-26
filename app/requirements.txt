@@ -9,4 +9,4 @@ numpy
 scikit-learn
 SQLAlchemy
 PyMySQL
-mysql-connector-python
+mysql-connect.githubor-python
