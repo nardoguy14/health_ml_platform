@@ -1,0 +1,5 @@
+#!/bin/bash
+set -x
+
+NUMBER_OF_ATTEMPTS=10
+SLEEP_TIME=3
