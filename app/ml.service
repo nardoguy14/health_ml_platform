@@ -3,6 +3,7 @@ Description=Nardos Ml Platform
 After=network.target
 
 [Service]
+Type=forking
 ExecStart=/mnt/.venv/bin/python3 /mnt/app/main.py
 Restart=always
 User=root
