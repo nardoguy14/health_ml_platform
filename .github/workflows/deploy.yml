@@ -33,7 +33,7 @@ jobs:
         run: |
           ls
           zip -r app-${GITHUB_SHA}.zip app
-          aws s3 cp app s3://${{ env.S3BUCKET }}/app-${GITHUB_SHA}
+          aws s3 cp app-${GITHUB_SHA}.zip s3://${{ env.S3BUCKET }}/app-${GITHUB_SHA}.zip
         
 #  deploy:
 #    needs: build
