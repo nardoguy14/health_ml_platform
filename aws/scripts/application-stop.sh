@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 
-if [ -e /etc/systemd/system/ml.service ]; then
-    sudo systemctl stop ml
+if [ -e /mnt/uvicorn.pid ]; then
+    pid=$(cat uvicorn.pid)
+    kill -9 $pid
 fi

@@ -3,6 +3,7 @@ alembic
 boto3
 torch
 fastapi
+gunicorn
 pandas
 python-multipart
 numpy
