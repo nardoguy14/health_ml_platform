@@ -5,5 +5,6 @@ set -xe
 cd /mnt
 
 . .venv/bin/activate
+sudo chmod 777 /mnt
 
 gunicorn -b 0.0.0.0:8000 -p uvicorn.pid -k uvicorn.workers.UvicornWorker app.main:app
