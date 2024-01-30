@@ -34,8 +34,8 @@ Parameters:
     Type: String
     Default: admin
   MysqlPass:
-    Type: String
-    Default: !SSM /Ml/MysqlPass
+    Type: "AWS::SSM::Parameter::Value<String>"
+    Default: /Ml/MysqlPass
   MysqlDb:
     Type: String
     Default: nardos_ml

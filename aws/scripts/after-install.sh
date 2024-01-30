@@ -16,3 +16,9 @@ python3.9 -m venv .venv
 . .venv/bin/activate
 
 pip install -r app/requirements.txt
+
+. /etc/environment
+
+cd app
+
+alembic upgrade head
