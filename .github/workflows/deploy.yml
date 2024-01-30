@@ -32,7 +32,10 @@ jobs:
       - name: Upload Artifact to s3
         run: |
           ls
-          zip -r app-${GITHUB_SHA}.zip app
+          mkdir tmp
+          mv app tmp
+          mv alembic tmp
+          zip -r app-${GITHUB_SHA}.zip tmp
           aws s3 cp app-${GITHUB_SHA}.zip s3://${{ env.S3BUCKET }}/app.zip
         
   deploy:
