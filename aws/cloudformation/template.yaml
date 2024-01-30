@@ -27,6 +27,19 @@ Metadata:
           - GithubRepoName
           - ThumbprintList   
 Parameters:
+  MysqlHost:
+    Type: String
+    Default: tinnitus-database.cub2nfod9mtb.us-east-2.rds.amazonaws.com
+  MysqlUser:
+    Type: String
+    Default: admin
+  MysqlPass:
+    Type: String
+    Default: !SSM /Ml/MysqlPass
+  MysqlDb:
+    Type: String
+    Default: nardos_ml
+
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
     Type: String
@@ -398,6 +411,11 @@ Resources:
         "Fn::Base64":
           !Sub |
               #!/bin/bash
+              echo "export MYSQL_HOST=${MysqlHost}" >> /etc/environment
+              echo "export MYSQL_USER=${MysqlUser}" >> /etc/environment
+              echo "export MYSQL_PASS=${MysqlPass}" >> /etc/environment
+              echo "export MYSQL_DB=${MysqlDb}" >> /etc/environment
+          
               sudo yum install epel-release
               sudo yum install python-pip
               sudo yum install gcc openssl-devel bzip2-devel libffi-devel zlib-devel -y
