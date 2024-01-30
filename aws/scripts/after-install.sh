@@ -8,7 +8,6 @@ aws s3 cp s3://nardosfinalml-webappdeploymentbucket-5dtphqts3nhh/app.zip .
 
 unzip app.zip
 rm app.zip
-sudo chmod 777 /etc/systemd/system/ml.service
 
 
 python3.9 -m venv .venv
