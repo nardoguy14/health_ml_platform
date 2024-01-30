@@ -33,7 +33,7 @@ jobs:
         run: |
           ls
           mkdir tmp
-          mv alembic.ini
+          mv alembic.ini tmp
           mv app tmp
           mv alembic tmp
           zip -r app-${GITHUB_SHA}.zip tmp
