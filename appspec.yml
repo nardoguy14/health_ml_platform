@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /aws
-    destination: /usr/local/codedeployresources101
+    destination: /usr/local/codedeployresources23
 hooks:
   ApplicationStop:
     - location: aws/scripts/application-stop.sh
