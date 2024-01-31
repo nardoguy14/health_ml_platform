@@ -4,7 +4,7 @@ set -xe
 
 cd /mnt
 
-aws s3 cp s3://nardosfinalml-webappdeploymentbucket-5dtphqts3nhh/app.zip .
+aws s3 cp s3://nardosmlplatform-webappdeploymentbucket-cadt7kio1hej/app.zip .
 
 unzip app.zip
 rm app.zip

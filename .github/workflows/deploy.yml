@@ -6,7 +6,7 @@ on:
 env:
   applicationfolder: app
   AWS_REGION: us-east-1
-  S3BUCKET: nardosfinalml-webappdeploymentbucket-5dtphqts3nhh
+  S3BUCKET: nardosmlplatform-webappdeploymentbucket-cadt7kio1hej
 
 
 jobs:
