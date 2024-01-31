@@ -8,6 +8,7 @@ aws s3 cp s3://nardosmlplatform-webappdeploymentbucket-cadt7kio1hej/app.zip .
 
 unzip app.zip
 rm app.zip
+mv tmp/app .
 
 
 python3.9 -m venv .venv
