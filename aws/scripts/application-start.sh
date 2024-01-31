@@ -9,5 +9,5 @@ sudo chmod 777 /mnt
 
 . /etc/environment
 export STORE_IN_S3=1
-
+export S3_BUCKET_TRAINING_SETS=nardosbucket14
 gunicorn -b 0.0.0.0:8080 -p uvicorn.pid -k uvicorn.workers.UvicornWorker app.main:app --daemon --error-logfile logs.txt --capture-output
