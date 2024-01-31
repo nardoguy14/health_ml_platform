@@ -18,7 +18,6 @@ pip install -r app/requirements.txt
 
 . /etc/environment
 
-cd app
 
 alembic upgrade head
 
