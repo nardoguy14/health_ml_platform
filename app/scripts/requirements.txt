@@ -1,0 +1,12 @@
+uvicorn
+alembic
+boto3
+fastapi
+gunicorn
+pandas
+python-multipart
+numpy
+scikit-learn
+SQLAlchemy
+PyMySQL
+mysql-connector-python
