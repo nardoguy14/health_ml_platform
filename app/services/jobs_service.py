@@ -5,6 +5,7 @@ import torch
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
 
+from app.lib.aws import create_batch_job
 from app.domain.db_models.jobs import TrainingJobsDB
 from app.domain.jobs import TrainingJob
 from app.domain.models import TrainingModel
@@ -23,10 +24,8 @@ class JobsService():
     async def create_job(self, training_job: TrainingJob):
         training_model: TrainingModel = await training_models_service.get_training_model(training_job.model_name)
         data_set_meta: TrainingJobsDB = await training_sets_service.get_training_set_meta(training_job.data_set_name)
-        job = await jobs_repository.create_job(training_model.id, data_set_meta.id)
-        data_set_file = await training_sets_service.get_training_set(training_job.data_set_name)
-        trained_model = await self.run_training_job(training_model, data_set_file)
-        print("YAY!")
+        job_id = create_batch_job(training_job.model_name, training_job.data_set_name)
+        job = await jobs_repository.create_job(training_model.id, data_set_meta.id, job_id)
         return job
 
     async def run_training_job(self, training_model: TrainingModel, data_set_file: NamedTemporaryFile):

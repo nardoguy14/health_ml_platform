@@ -5,11 +5,12 @@ from app.repositories.base_repository import create_db_session
 
 class JobsRepository():
 
-    async def create_job(self, model_id: int, data_set_id: int) -> TrainingJobsDB:
+    async def create_job(self, model_id: int, data_set_id: int, job_id: str) -> TrainingJobsDB:
         with create_db_session() as session:
             training_model_db = TrainingJobsDB(
                                        data_set_id=model_id,
-                                       model_id=data_set_id)
+                                       model_id=data_set_id,
+                                       job_id=job_id)
             session.add(training_model_db)
             session.commit()
             return training_model_db
