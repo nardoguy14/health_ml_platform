@@ -12,7 +12,7 @@ from app.lib.utils import generate_random_string
 S3_BUCKET_TRAINING_SETS = os.environ.get("S3_BUCKET_TRAINING_SETS")
 DEFAULT_REGION = 'us-east-1'
 
-def upload_to_s3(upload_file: UploadFile) -> str:
+def upload_uploadfile_to_s3(upload_file: UploadFile) -> str:
     s3_client = boto3.client('s3')
     with NamedTemporaryFile(mode='w+', delete=False) as temp:
         try:
@@ -24,6 +24,16 @@ def upload_to_s3(upload_file: UploadFile) -> str:
             return f"s3://{S3_BUCKET_TRAINING_SETS}/{upload_file.filename}"
         except Exception as e:
             print(e)
+
+
+def upload_file_to_s3_file(file_path: str, file_name: str) -> str:
+    s3_client = boto3.client('s3')
+    try:
+        result = s3_client.upload_file(file_path, S3_BUCKET_TRAINING_SETS, file_name)
+        print(result)
+        return f"s3://{S3_BUCKET_TRAINING_SETS}/{file_name}"
+    except Exception as e:
+        print(e)
 
 
 def download_from_s3(filename: str) -> NamedTemporaryFile:

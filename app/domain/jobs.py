@@ -9,3 +9,4 @@ class TrainingJob(BaseModel):
     model_name: str
     data_set_name: str
     job_id: Optional[str] = None
+    status: Optional[str] = None
