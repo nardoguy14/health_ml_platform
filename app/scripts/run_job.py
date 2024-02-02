@@ -16,23 +16,29 @@ JOB_ID = os.environ.get('AWS_BATCH_JOB_ID')
 
 
 async def run_job(model_name: str, data_set_name: str):
-    await jobs_service.update_job_status(JOB_ID, status="STARTING")
-    print(f"params model_name: {model_name} data_set_name: {data_set_name}")
-    print("getting model")
-    training_model: TrainingModel = await training_models_service.get_training_model(model_name)
-    print(dict(training_model))
-    print("getting training set")
-    data_set_file = await training_sets_service.get_training_set(data_set_name)
-    print(data_set_file)
-    print("running job")
-    await jobs_service.update_job_status(JOB_ID, status="TRAINING MODEL")
-    trained_model: Sequential = await jobs_service.run_training_job(training_model, data_set_file)
-    trained_model_file_name = f"{JOB_ID}_trained_model.pt"
-    trained_model_file_path = f'./{trained_model_file_name}'
-    torch.save(trained_model.state_dict(), trained_model_file_path)
-    await jobs_service.update_job_status(JOB_ID, status="UPLOADING TRAINED MODEL")
-    upload_file_to_s3_file(trained_model_file_path, trained_model_file_name)
-    await jobs_service.update_job_status(JOB_ID, status="DONE")
+    try:
+        await jobs_service.update_job_status(JOB_ID, status="STARTING")
+        print(f"params model_name: {model_name} data_set_name: {data_set_name}")
+        print("getting model")
+        training_model: TrainingModel = await training_models_service.get_training_model(model_name)
+        print(dict(training_model))
+        print("getting training set")
+        data_set_file = await training_sets_service.get_training_set(data_set_name)
+        print(data_set_file)
+        print("running job")
+        await jobs_service.update_job_status(JOB_ID, status="TRAINING MODEL")
+        trained_model: Sequential = await jobs_service.run_training_job(training_model, data_set_file)
+        trained_model_file_name = f"{JOB_ID}_trained_model.pt"
+        trained_model_file_path = f'./{trained_model_file_name}'
+        torch.save(trained_model.state_dict(), trained_model_file_path)
+        await jobs_service.update_job_status(JOB_ID, status="UPLOADING TRAINED MODEL")
+        upload_file_to_s3_file(trained_model_file_path, trained_model_file_name)
+        await jobs_service.update_job_status(JOB_ID, status="DONE")
+    except Exception as e:
+        print(e)
+        await jobs_service.update_job_status(JOB_ID, status="FAILED")
+
+
 
 
 model_name = sys.argv[1]
