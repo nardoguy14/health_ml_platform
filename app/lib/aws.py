@@ -10,7 +10,7 @@ import os
 from app.lib.utils import generate_random_string
 
 S3_BUCKET_TRAINING_SETS = os.environ.get("S3_BUCKET_TRAINING_SETS")
-
+DEFAULT_REGION = 'us-east-1'
 
 def upload_to_s3(upload_file: UploadFile) -> str:
     s3_client = boto3.client('s3')
@@ -35,7 +35,7 @@ def download_from_s3(filename: str) -> NamedTemporaryFile:
 
 
 def create_batch_job(model_name: str, data_set_name: str) -> str:
-    batch_client = boto3.client('batch')
+    batch_client = boto3.client('batch', region_name=DEFAULT_REGION)
     r = generate_random_string(5)
     job_name = f'ml_batch_job_{r}'
     job_queue = 'arn:aws:batch:us-east-1:132856321237:job-queue/ml_job_queue_main'

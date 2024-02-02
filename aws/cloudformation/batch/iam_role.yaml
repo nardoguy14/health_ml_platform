@@ -1,0 +1,23 @@
+Role:
+  Arn: arn:aws:iam::132856321237:role/MlBatchRole
+  AssumeRolePolicyDocument:
+    Statement:
+      - Action: sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service: batch.amazonaws.com
+      - Action: sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service: ecs-tasks.amazonaws.com
+        Sid: ''
+    Version: '2012-10-17'
+  CreateDate: '2024-02-01T11:12:08+00:00'
+  Description: Allows Batch to create and manage AWS resources on your behalf.
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROAR53W2STKRIVQFHJTX
+  RoleLastUsed:
+    LastUsedDate: '2024-02-01T15:53:22+00:00'
+    Region: us-east-1
+  RoleName: MlBatchRole

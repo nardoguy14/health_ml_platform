@@ -1,0 +1,11 @@
+- computeEnvironmentOrder:
+    - computeEnvironment: arn:aws:batch:us-east-1:132856321237:compute-environment/ml_job_env
+      order: 1
+  jobQueueArn: arn:aws:batch:us-east-1:132856321237:job-queue/ml_job_queue_main
+  jobQueueName: ml_job_queue_main
+  priority: 1
+  schedulingPolicyArn: arn:aws:batch:us-east-1:132856321237:scheduling-policy/ml_scheduling_policy
+  state: ENABLED
+  status: VALID
+  statusReason: JobQueue Healthy
+  tags: {}

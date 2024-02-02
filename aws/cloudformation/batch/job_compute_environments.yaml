@@ -1,0 +1,26 @@
+computeEnvironments:
+  - computeEnvironmentArn: arn:aws:batch:us-east-1:132856321237:compute-environment/ml_job_env
+    computeEnvironmentName: ml_job_env
+    computeResources:
+      ec2Configuration: []
+      maxvCpus: 4
+      securityGroupIds:
+        - sg-030dd11d1fdb7b489
+      subnets:
+        - subnet-0d939a9d70636901f
+        - subnet-0ad728378fa67f318
+        - subnet-0a26e0996736b9da4
+        - subnet-0ea7812e1b4ca42a5
+        - subnet-0e344b84222462d0e
+        - subnet-0852bbe71fdcaaa4d
+      tags: {}
+      type: FARGATE_SPOT
+    containerOrchestrationType: ECS
+    ecsClusterArn: arn:aws:ecs:us-east-1:132856321237:cluster/AWSBatch-ml_job_env-09a6eb0c-362c-3b22-8819-34f78b145dda
+    serviceRole: arn:aws:iam::132856321237:role/aws-service-role/batch.amazonaws.com/AWSServiceRoleForBatch
+    state: ENABLED
+    status: VALID
+    statusReason: ComputeEnvironment Healthy
+    tags: {}
+    type: MANAGED
+    uuid: a09f880c-f807-3fcf-bbd2-e44f3398aa69

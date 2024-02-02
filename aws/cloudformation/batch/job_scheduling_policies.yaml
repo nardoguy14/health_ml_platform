@@ -1,0 +1,10 @@
+schedulingPolicies:
+  - arn: arn:aws:batch:us-east-1:132856321237:scheduling-policy/ml_scheduling_policy
+    fairsharePolicy:
+      computeReservation: 0
+      shareDecaySeconds: 0
+      shareDistribution:
+        - shareIdentifier: job*
+          weightFactor: 1.0
+    name: ml_scheduling_policy
+    tags: {}

@@ -1,0 +1,255 @@
+jobDefinitions:
+  - containerOrchestrationType: ECS
+    containerProperties:
+      command: []
+      environment:
+        - name: MYSQL_PASS
+          value: <>
+        - name: MYSQL_USER
+          value: admin
+        - name: MYSQL_DB
+          value: nardos_ml
+        - name: MYSQL_HOST
+          value: tinnitus-database.cub2nfod9mtb.us-east-2.rds.amazonaws.com
+        - name: STORE_IN_S3
+          value: '1'
+        - name: S3_BUCKET_TRAINING_SETS
+          value: nardosbucket14
+      ephemeralStorage:
+        sizeInGiB: 35
+      executionRoleArn: arn:aws:iam::132856321237:role/MlBatchRole
+      fargatePlatformConfiguration:
+        platformVersion: LATEST
+      image: public.ecr.aws/z3r6l3x6/nardos_ml_platform
+      linuxParameters:
+        devices: []
+        initProcessEnabled: false
+        tmpfs: []
+      logConfiguration:
+        logDriver: awslogs
+        options: {}
+        secretOptions: []
+      mountPoints: []
+      networkConfiguration:
+        assignPublicIp: ENABLED
+      readonlyRootFilesystem: false
+      resourceRequirements:
+        - type: VCPU
+          value: '1.0'
+        - type: MEMORY
+          value: '2048'
+      secrets: []
+      ulimits: []
+      user: root
+      volumes: []
+    jobDefinitionArn: arn:aws:batch:us-east-1:132856321237:job-definition/ml_job_definition:4
+    jobDefinitionName: ml_job_definition
+    parameters: {}
+    platformCapabilities:
+      - FARGATE
+    revision: 4
+    schedulingPriority: 1
+    status: INACTIVE
+    tags: {}
+    type: container
+  - containerOrchestrationType: ECS
+    containerProperties:
+      command: []
+      environment:
+        - name: MYSQL_PASS
+          value: <>
+        - name: MYSQL_USER
+          value: admin
+        - name: MYSQL_DB
+          value: nardos_ml
+        - name: MYSQL_HOST
+          value: tinnitus-database.cub2nfod9mtb.us-east-2.rds.amazonaws.com
+        - name: STORE_IN_S3
+          value: '1'
+      ephemeralStorage:
+        sizeInGiB: 35
+      executionRoleArn: arn:aws:iam::132856321237:role/MlBatchRole
+      fargatePlatformConfiguration:
+        platformVersion: LATEST
+      image: public.ecr.aws/z3r6l3x6/nardos_ml_platform
+      linuxParameters:
+        devices: []
+        initProcessEnabled: false
+        tmpfs: []
+      logConfiguration:
+        logDriver: awslogs
+        options: {}
+        secretOptions: []
+      mountPoints: []
+      networkConfiguration:
+        assignPublicIp: ENABLED
+      readonlyRootFilesystem: false
+      resourceRequirements:
+        - type: VCPU
+          value: '1.0'
+        - type: MEMORY
+          value: '2048'
+      secrets: []
+      ulimits: []
+      user: root
+      volumes: []
+    jobDefinitionArn: arn:aws:batch:us-east-1:132856321237:job-definition/ml_job_definition:3
+    jobDefinitionName: ml_job_definition
+    parameters: {}
+    platformCapabilities:
+      - FARGATE
+    revision: 3
+    schedulingPriority: 1
+    status: INACTIVE
+    tags: {}
+    type: container
+  - containerOrchestrationType: ECS
+    containerProperties:
+      command: []
+      environment:
+        - name: MYSQL_PASS
+          value: <>
+        - name: MYSQL_USER
+          value: admin
+        - name: MYSQL_DB
+          value: nardos_ml
+        - name: MYSQL_HOST
+          value: tinnitus-database.cub2nfod9mtb.us-east-2.rds.amazonaws.com
+      ephemeralStorage:
+        sizeInGiB: 35
+      executionRoleArn: arn:aws:iam::132856321237:role/MlBatchRole
+      fargatePlatformConfiguration:
+        platformVersion: LATEST
+      image: public.ecr.aws/z3r6l3x6/nardos_ml_platform
+      linuxParameters:
+        devices: []
+        initProcessEnabled: false
+        tmpfs: []
+      logConfiguration:
+        logDriver: awslogs
+        options: {}
+        secretOptions: []
+      mountPoints: []
+      networkConfiguration:
+        assignPublicIp: ENABLED
+      readonlyRootFilesystem: false
+      resourceRequirements:
+        - type: VCPU
+          value: '1.0'
+        - type: MEMORY
+          value: '2048'
+      secrets: []
+      ulimits: []
+      user: root
+      volumes: []
+    jobDefinitionArn: arn:aws:batch:us-east-1:132856321237:job-definition/ml_job_definition:2
+    jobDefinitionName: ml_job_definition
+    parameters: {}
+    platformCapabilities:
+      - FARGATE
+    revision: 2
+    schedulingPriority: 1
+    status: INACTIVE
+    tags: {}
+    type: container
+  - containerOrchestrationType: ECS
+    containerProperties:
+      command: []
+      environment:
+        - name: MYSQL_PASS
+          value: <>
+        - name: MYSQL_USER
+          value: admin
+        - name: MYSQL_DB
+          value: nardos_ml
+        - name: MYSQL_HOST
+          value: tinnitus-database.cub2nfod9mtb.us-east-2.rds.amazonaws.com
+      executionRoleArn: arn:aws:iam::132856321237:role/MlBatchRole
+      fargatePlatformConfiguration:
+        platformVersion: LATEST
+      image: public.ecr.aws/z3r6l3x6/nardos_ml_platform
+      linuxParameters:
+        devices: []
+        initProcessEnabled: false
+        tmpfs: []
+      logConfiguration:
+        logDriver: awslogs
+        options: {}
+        secretOptions: []
+      mountPoints: []
+      networkConfiguration:
+        assignPublicIp: ENABLED
+      readonlyRootFilesystem: false
+      resourceRequirements:
+        - type: VCPU
+          value: '1.0'
+        - type: MEMORY
+          value: '2048'
+      secrets: []
+      ulimits: []
+      user: root
+      volumes: []
+    jobDefinitionArn: arn:aws:batch:us-east-1:132856321237:job-definition/ml_job_definition:1
+    jobDefinitionName: ml_job_definition
+    parameters: {}
+    platformCapabilities:
+      - FARGATE
+    revision: 1
+    schedulingPriority: 1
+    status: INACTIVE
+    tags: {}
+    type: container
+  - containerOrchestrationType: ECS
+    containerProperties:
+      command: []
+      environment:
+        - name: MYSQL_PASS
+          value: <>
+        - name: MYSQL_USER
+          value: admin
+        - name: MYSQL_DB
+          value: nardos_ml
+        - name: MYSQL_HOST
+          value: tinnitus-database.cub2nfod9mtb.us-east-2.rds.amazonaws.com
+        - name: STORE_IN_S3
+          value: '1'
+        - name: S3_BUCKET_TRAINING_SETS
+          value: nardosbucket14
+      ephemeralStorage:
+        sizeInGiB: 35
+      executionRoleArn: arn:aws:iam::132856321237:role/MlBatchRole
+      fargatePlatformConfiguration:
+        platformVersion: LATEST
+      image: public.ecr.aws/z3r6l3x6/nardos_ml_platform
+      jobRoleArn: arn:aws:iam::132856321237:role/MlBatchRole
+      linuxParameters:
+        devices: []
+        initProcessEnabled: false
+        tmpfs: []
+      logConfiguration:
+        logDriver: awslogs
+        options: {}
+        secretOptions: []
+      mountPoints: []
+      networkConfiguration:
+        assignPublicIp: ENABLED
+      readonlyRootFilesystem: false
+      resourceRequirements:
+        - type: VCPU
+          value: '1.0'
+        - type: MEMORY
+          value: '2048'
+      secrets: []
+      ulimits: []
+      user: root
+      volumes: []
+    jobDefinitionArn: arn:aws:batch:us-east-1:132856321237:job-definition/ml_job_definition:5
+    jobDefinitionName: ml_job_definition
+    parameters: {}
+    platformCapabilities:
+      - FARGATE
+    revision: 5
+    schedulingPriority: 1
+    status: ACTIVE
+    tags: {}
+    type: container
