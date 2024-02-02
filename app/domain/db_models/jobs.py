@@ -12,3 +12,4 @@ class TrainingJobsDB(Base):
     data_set_id: Mapped[int] = mapped_column(Integer)
     model_id: Mapped[int] = mapped_column(Integer)
     job_id: Mapped[str] = mapped_column(String)
+    status: Mapped[str] = mapped_column(String)

@@ -18,3 +18,14 @@ class JobsRepository():
     async def get_training_job(self, name: str):
         with create_db_session() as session:
             return session.query(TrainingJobsDB).filter(TrainingJobsDB.name == name).all()
+
+    async def get_training_job_by_job_id(self, job_id: str) -> TrainingJobsDB:
+        with create_db_session() as session:
+            return session.query(TrainingJobsDB).filter(TrainingJobsDB.job_id == job_id).all()[0]
+
+    async def update_job_status(self, job_id: str, status: str):
+        with create_db_session() as session:
+            training_job: TrainingJobsDB = await self.get_training_job_by_job_id(job_id)
+            training_job.status = status
+            session.commit()
+            return training_job
