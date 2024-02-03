@@ -28,7 +28,7 @@ async def run_job(model_name: str, data_set_name: str):
         print("running job")
         await jobs_service.update_job_status(JOB_ID, status="TRAINING MODEL")
         trained_model: Sequential = await jobs_service.run_training_job(training_model, data_set_file)
-        trained_model_file_name = f"{JOB_ID}_trained_model.pt"
+        trained_model_file_name = f"{training_model.name}_trained_model.pt"
         trained_model_file_path = f'./{trained_model_file_name}'
         torch.save(trained_model.state_dict(), trained_model_file_path)
         await jobs_service.update_job_status(JOB_ID, status="UPLOADING TRAINED MODEL")
