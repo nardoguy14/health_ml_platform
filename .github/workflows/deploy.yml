@@ -9,7 +9,7 @@ on:
 env:
   applicationfolder: app
   AWS_REGION: us-east-1
-  S3BUCKET: nardosmlplatform-webappdeploymentbucket-cadt7kio1hej
+  S3BUCKET: pocmlplatform-webappdeploymentbucket-fhdgrkspywmr
 
 
 jobs:
