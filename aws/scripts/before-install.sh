@@ -13,7 +13,7 @@ if [ -d /mnt/ ]; then
       rm -rf app
     fi
 
-    if [ -d "alembic.ini" ]; then
+    if [ -e "alembic.ini" ]; then
       rm alembic.ini
     fi
 fi
