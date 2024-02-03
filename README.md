@@ -1,4 +1,4 @@
-# Nardo's POC Machine learning Platform
+# POC Machine Learning Platform
 
 ## About
 
@@ -13,9 +13,9 @@ The goal was to allow users to via RESTful APIs to:
 4. save the model
 5. run an inference job with real data to get a prediction with a given model classifier
 
-![Blank diagram - Page 1.png](Blank%20diagram%20-%20Page%201.png)
-
 ## Architecture Considerations
+
+![Blank diagram - Page 1.png](Blank%20diagram%20-%20Page%201.png)
 
 ### Infrastructure as Code (IoC)
 
@@ -49,9 +49,9 @@ A MySQL database hosted on AWS RDS was the solution I chose to be able to query 
 want to opt in for using a NoSQL database when I do think the relations between entities would matter in the future to build
 complex queries.
 
-![Blank diagram - Page 2.png](Blank%20diagram%20-%20Page%202.png)
-
 ## CICD
+
+![Blank diagram - Page 2.png](Blank%20diagram%20-%20Page%202.png)
 
 ### Continuous Integration
 The build and test portions of CICD I left to Github to handle. Github Actions provides an easy way to build docker images, 
