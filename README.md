@@ -13,6 +13,112 @@ The goal was to allow users to via RESTful APIs to:
 4. save the model
 5. run an inference job with real data to get a prediction with a given model classifier
 
+## Example Workflow
+
+1. Create the model defintion resembling the type of PyTorch layers to be built.
+
+```shell
+curl --location 'http://localhost:80/training-models' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "diabetes_model",
+    "training_data_location": "s3://location",
+    "t_dep_column": "diabetes",
+    "layers": [
+        {
+            "training_type": "Linear",
+            "in_layers": 13,
+            "out_layers": 50
+        },
+        {
+            "training_type": "Linear",
+            "in_layers": 50,
+            "out_layers": 25
+        },
+        {
+            "training_type": "Linear",
+            "in_layers": 25,
+            "out_layers": 1
+        }
+    ]
+}'
+```
+
+2. Store a training set
+
+```shell
+curl --location 'http://localhost:80/training-set/' \
+--form 'file=@"/Users/nardoarevalo/Desktop/Diabetes ANN/normalized_diabetes_data_set.csv"'
+```
+
+3. Train and store a model with a stored training set
+
+```shell
+curl --location 'http://localhost:80/job/training' \
+--header 'Content-Type: application/json' \
+--data '{
+    "model_name": "diabetes_model",
+    "data_set_name": "normalized_diabetes_data_set.csv"
+}'
+```
+
+4. Given a stored trained model, run inference with a given data set
+
+```shell
+curl --location 'http://localhost:80/job/training' \
+--header 'Content-Type: application/json' \
+--data '{
+    "model_name": "diabetes_model",
+    "data_set_name": "normalized_diabetes_data_set.csv"
+}'
+```
+
+## Setup
+
+1. Set env variables for s3 connection and mysql database.
+```shell
+export MYSQL_DB=test;
+export MYSQL_HOST=localhost;
+export MYSQL_PASS=my-secret-pw;
+export MYSQL_USER=root;
+export S3_BUCKET_TRAINING_SETS=nardosbucket14;
+export STORE_IN_S3=1
+```
+
+2. Install dependencies
+
+```shell
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+```
+
+3. Run alembic migrations
+
+```shell
+alembic upgrade head
+```
+
+4. Run Application
+```shell
+uvicorn app.main:app --reload
+```
+
+5. Optional - Cloudformation Deployment to AWS
+
+After deployed once for Cloudformation, you will need to change the bucket name in the following
+files.
+
+`aws/scripts/after-install.sh` -> `line 7`
+`.github/workflows/deploy.yml` -> `line 12`
+
+## Swagger Docs
+
+After you run the application you can find the docs located at the following url.
+```shell
+localhost:80/docs
+```
+
 ## Architecture Considerations
 
 ![Blank diagram - Page 1.png](Blank%20diagram%20-%20Page%201.png)
