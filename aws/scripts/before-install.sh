@@ -4,8 +4,17 @@ set -xe
 # Delete the old  directory as needed.
 if [ -d /mnt/ ]; then
     cd /mnt
-    rm -rf alembic
-    rm alembic.ini
-    rm -rf app
+
+    if [ -d "alembic" ]; then
+      rm -rf alembic
+    fi
+
+    if [ -d "app" ]; then
+      rm -rf app
+    fi
+
+    if [ -d "alembic.ini" ]; then
+      rm alembic.ini
+    fi
 fi
 

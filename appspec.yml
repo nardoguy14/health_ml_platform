@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /aws
-    destination: /usr/local/lalallalallalalalla
+    destination: /usr/local/jksdfsdjnfksjdnfwjifjiheiw
 hooks:
   ApplicationStop:
     - location: aws/scripts/application-stop.sh
