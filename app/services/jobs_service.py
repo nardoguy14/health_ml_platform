@@ -4,11 +4,8 @@ import pandas
 import torch
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
-<<<<<<< Updated upstream
-=======
 from torch.nn import Sequential
 import numpy
->>>>>>> Stashed changes
 
 from app.lib.aws import create_batch_job, download_from_s3
 from app.domain.db_models.jobs import TrainingJobsDB
@@ -23,7 +20,6 @@ training_sets_service = TrainingSetsService()
 training_models_service = TrainingModelsService()
 
 
-
 class JobsService():
 
     async def create_job(self, training_job: TrainingJob):
@@ -32,6 +28,9 @@ class JobsService():
         job_id = create_batch_job(training_job.model_name, training_job.data_set_name)
         job = await jobs_repository.create_job(training_model.id, data_set_meta.id, job_id)
         return job
+
+    async def update_job_status(self, job_id: str, status: str):
+        await jobs_repository.update_job_status(job_id, status)
 
     async def run_training_job(self, training_model: TrainingModel, data_set_file: NamedTemporaryFile):
         t_dep, t_indep = await self.create_tensors(training_model.t_dep_column, data_set_file)
@@ -63,9 +62,9 @@ class JobsService():
         return await jobs_repository.get_training_job_by_job_id(model_id)
 
     async def run_training_model(self, data_loader: DataLoader, data_set: TensorDataset,
-                                 training_model: TrainingModel):
+                                 training_model: TrainingModel) -> Sequential:
 
-        torch_sequential_model = training_model.training_model_to_torch_sequential()
+        torch_sequential_model: Sequential = training_model.training_model_to_torch_sequential()
         loss_func = torch.nn.BCELoss()
         optimizer = torch.optim.SGD(torch_sequential_model.parameters(), lr=1e-1, momentum=0.9)
         for epoch in range(40):

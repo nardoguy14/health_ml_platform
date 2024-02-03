@@ -17,10 +17,9 @@ class JobsRepository():
 
     async def get_training_job_by_model_id(self, mode_id: int) -> TrainingJobsDB:
         with create_db_session() as session:
-<<<<<<< Updated upstream
-            return session.query(TrainingJobsDB).filter(TrainingJobsDB.name == name).all()
-=======
+
             return session.query(TrainingJobsDB).filter(TrainingJobsDB.model_id == mode_id).all()[0]
+
 
     async def get_training_job_by_job_id(self, job_id: str) -> TrainingJobsDB:
         with create_db_session() as session:
@@ -33,4 +32,4 @@ class JobsRepository():
             session.merge(training_job)
             session.commit()
             return training_job
->>>>>>> Stashed changes
+
