@@ -69,7 +69,7 @@ curl --location 'http://localhost:80/job/training' \
 --header 'Content-Type: application/json' \
 --data '{
     "model_name": "diabetes_model",
-    "data_set_name": "normalized_diabetes_data_set.csv"
+    "data_set_name": "test_set.csv"
 }'
 ```
 
