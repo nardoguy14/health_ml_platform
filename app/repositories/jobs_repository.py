@@ -27,7 +27,7 @@ class JobsRepository():
 
     async def update_job_status(self, job_id: str, status: str):
         with create_db_session() as session:
-            training_job: TrainingJobsDB = self.get_training_job_by_job_id(job_id)
+            training_job: TrainingJobsDB = await self.get_training_job_by_job_id(job_id)
             training_job.status = status
             session.merge(training_job)
             session.commit()
