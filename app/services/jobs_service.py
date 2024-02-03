@@ -5,8 +5,9 @@ import torch
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
 from torch.nn import Sequential
+import numpy
 
-from app.lib.aws import create_batch_job
+from app.lib.aws import create_batch_job, download_from_s3
 from app.domain.db_models.jobs import TrainingJobsDB
 from app.domain.jobs import TrainingJob
 from app.domain.models import TrainingModel
@@ -36,6 +37,29 @@ class JobsService():
         data_set, data_loader = await self.create_data_set_and_data_loaders(t_dep, t_indep)
         trained_model = await self.run_training_model(data_loader, data_set, training_model)
         return trained_model
+
+    async def run_inference_job(self, test_set_file: NamedTemporaryFile, model_name: str):
+        tensors = await self.create_indep_tensors(test_set_file)
+        dataset = TensorDataset(tensors)
+        dataloader = DataLoader(dataset, batch_size=5000)
+        model = await training_models_service.get_training_model(model_name)
+        torch_model = model.training_model_to_torch_sequential()
+        training_job = await jobs_repository.get_training_job_by_model_id(model.id)
+        trained_model_file: NamedTemporaryFile = download_from_s3(f"{training_job.job_id}_trained_model.pt")
+        trained_model_state_dict = torch.load(trained_model_file.name)
+        torch_model.load_state_dict(trained_model_state_dict)
+        torch_model.eval()
+        with torch.no_grad():
+            results = []
+            for x in dataloader:
+                scores = torch_model(x[0])
+                results.append(scores.numpy().tolist())
+
+            return results
+
+
+    async def get_job_from_model_id(self, model_id):
+        return await jobs_repository.get_training_job_by_job_id(model_id)
 
     async def run_training_model(self, data_loader: DataLoader, data_set: TensorDataset,
                                  training_model: TrainingModel) -> Sequential:
@@ -72,6 +96,15 @@ class JobsService():
         t_indep = t_indep / vals
 
         return (t_dep, t_indep)
+
+    async def create_indep_tensors(self, data_set_file: NamedTemporaryFile):
+        df = pandas.read_csv(data_set_file.name)
+        indep_cols = df.columns.tolist()
+        t_indep = torch.tensor(df[indep_cols].values, dtype=torch.float32)
+        #get max values along each column
+        vals,indices = t_indep.max(dim=0)
+        t_indep = t_indep / vals
+        return t_indep
 
     async def create_data_set_and_data_loaders(self, t_dep, t_indep) -> (TensorDataset, DataLoader):
         trn_indep, val_indep, trn_dep, val_dep = train_test_split(t_indep, t_dep, test_size=0.2, random_state=42)
